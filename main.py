@@ -1,33 +1,22 @@
-import os
+import genExcelSheet
+import render
+import reset
 
-from openpyxl import Workbook
-import videoToFrames
-import frameToExcel
-wb = Workbook()
 
-ws = wb.active
+print("Please make sure you have all the dependencies installed (look at README.md to see how)")
+rdy = input("Do you have all the dependencies installed and a video in this directory names 'video.mp4' (y/n): ")
 
-# scales all the columns
-print("Setting up excel sheet")
-rows = []
-for row in ws.iter_cols(1, 120):
-    rows.append(str(row).replace("(<Cell 'Sheet'.", "").replace("1>,)", ""))
+if rdy == 'y':
+    genExcelSheet.main()
 
-for row in rows:
-    ws.column_dimensions[row].width = 2.5
+    print("Done generating excel spreadsheet, please open the spreadsheet.")
+    X = input("What is the X coordinate of the cell select field (github for instructions)")
+    Y = input("What is the Y coordinate of the cell select field (github for instructions)")
+    rdy = input("Are you ready for it to start taking screenshots? You cannot do anything while it is running. (y/n)")
 
-# convert video to frames
-print("Converting video to frames")
-frameList = videoToFrames.FrameCapture("video.mp4")
-print("Done converting video to frames")
+    if rdy == 'y':
+        print("10 seconds to open excel")
+        render.main(X, Y)
 
-i = 0
-
-for path in frameList:
-    ws = frameToExcel.frameToExcel(path, ws, i)
-    i = i+1
-    print(f'Processing frame: {i} / {len(frameList)}')
-
-print("Saving sheet (may take a while)")
-wb.save("display.xlsx")
-print("done")
+        print("DONE!")
+        reset.main()
