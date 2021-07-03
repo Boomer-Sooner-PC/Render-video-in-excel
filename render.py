@@ -26,7 +26,7 @@ def main(X, Y):
     print("OPEN EXCEL")
     # time.sleep(10)
 
-    pyautogui.moveTo(jumpToLocationX, jumpToLocationY)
+    pyautogui.moveTo(int(X), int(Y))
 
     for i in range(1, len(fileNames)):
         pyautogui.click()  # clicks the cell select field
