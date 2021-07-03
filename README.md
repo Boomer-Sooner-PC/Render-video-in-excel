@@ -17,3 +17,6 @@ Here are the modules and commands for installing them
 get the X and Y coordinates of this field:
 ![problem getting image](https://i.ibb.co/qgcf6xY/Screen-Shot-2021-07-03-at-1-28-42-PM.png)
 write it down because you will need it for the process 
+
+# Put a video file in the directory
+put a video called video.mp4 in the directory, it will get squished to 4:3 
